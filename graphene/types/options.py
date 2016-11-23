@@ -19,6 +19,8 @@ class Options(object):
         for attr_name, value in defaults.items():
             if attr_name in meta_attrs:
                 value = meta_attrs.pop(attr_name)
+            elif hasattr(meta, attr_name):
+                value = getattr(meta, attr_name)
             setattr(self, attr_name, value)
 
         # If meta_attrs is not empty, it implicitly means
